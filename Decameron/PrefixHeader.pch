@@ -1,0 +1,19 @@
+//
+//  PrefixHeader.pch
+//  屌丝男女的日常
+//
+//  Created by 李璐 on 16/2/25.
+//  Copyright © 2016年 李璐. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+
+#import "LLDSHeadFile.h"
+
+#import "Masonry.h"
+#define MAS_SHORTHAND_GLOBALS
+
+#endif /* PrefixHeader_pch */

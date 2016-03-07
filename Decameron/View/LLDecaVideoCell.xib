@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="LLDecaVideoCell">
+            <rect key="frame" x="0.0" y="0.0" width="223" height="172"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="223" height="172"/>
+                <subviews>
+                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A2P-6o-Ha3">
+                        <rect key="frame" x="76" y="50" width="71" height="71"/>
+                        <state key="normal" image="video-play"/>
+                        <connections>
+                            <action selector="changePlayState" destination="gTV-IL-0wX" eventType="touchUpInside" id="Wbu-yV-XLP"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <constraints>
+                <constraint firstItem="A2P-6o-Ha3" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="4ya-S2-0dO"/>
+                <constraint firstItem="A2P-6o-Ha3" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="fdl-Vg-Rmi"/>
+            </constraints>
+            <size key="customSize" width="223" height="172"/>
+            <connections>
+                <outlet property="playStateButton" destination="A2P-6o-Ha3" id="8W1-ez-2Ok"/>
+            </connections>
+            <point key="canvasLocation" x="197.5" y="293"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="video-play" width="71" height="71"/>
+    </resources>
+</document>
