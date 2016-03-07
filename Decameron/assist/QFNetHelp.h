@@ -6,7 +6,7 @@
 //  Copyright © 2016年 北京千锋-王广威. All rights reserved.
 //
 
-#import "AFHTTPSessionManager.h"
+#import <AFNetworking/AFNetworking.h>
 
 @interface QFNetHelp : AFHTTPSessionManager
 

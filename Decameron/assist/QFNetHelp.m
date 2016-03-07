@@ -7,7 +7,6 @@
 //
 
 #import "QFNetHelp.h"
-#import "AFHTTPRequestOperationManager.h"
 
 static QFNetHelp *_shareManager = nil;
 
@@ -69,18 +68,18 @@ static QFNetHelp *_shareManager = nil;
 }
 
 
-// 封装 Post 请求，成功和失败在一个 block 里面处理
-+ (void)postWithParam:(NSDictionary *)params andPath:(NSString *)path andComplete:(void (^)(BOOL success, id result))complete {
-	[[self shareManager] POST:path parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-		// 请求成功，block 返回服务器返回的数据。
-		// 这里是因为服务器返回数据不一定为字符串或者是 json 数据，所以不做其他处理，直接返回，如果是其他需求，也可以再继续进行其他处理
-		complete(YES, responseObject);
-	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-		// 网络请求失败，返回失败原因
-		complete(NO, error.localizedDescription);
-	}];
-}
-
+//// 封装 Post 请求，成功和失败在一个 block 里面处理
+//+ (void)postWithParam:(NSDictionary *)params andPath:(NSString *)path andComplete:(void (^)(BOOL success, id result))complete {
+//	[[self shareManager] POST:path parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//		// 请求成功，block 返回服务器返回的数据。
+//		// 这里是因为服务器返回数据不一定为字符串或者是 json 数据，所以不做其他处理，直接返回，如果是其他需求，也可以再继续进行其他处理
+//		complete(YES, responseObject);
+//	} failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//		// 网络请求失败，返回失败原因
+//		complete(NO, error.localizedDescription);
+//	}];
+//}
+//
 // 封装 Get 请求，成功和失败分开处理
 + (void)getDataWithParam:(NSDictionary *)params andPath:(NSString *)path andComplete:(void (^)(BOOL success, id result))complete {
 
@@ -92,6 +91,7 @@ static QFNetHelp *_shareManager = nil;
     {
         manager.requestSerializer.cachePolicy = NSURLRequestReturnCacheDataElseLoad;
     }
+    
     
     [manager GET:path parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
         complete(YES, responseObject);
