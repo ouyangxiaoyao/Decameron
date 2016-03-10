@@ -8,65 +8,74 @@
 #import "LLDecaVideoCell.h"
 #import "LLDSModel.h"
 #import "SDWebImageDownloader.h"
-#import "LLVideoView.h"
+#import "UIView+ViewController.h"
+#import "VKVideoPlayerConfig.h"
+#import "VKFoundation.h"
+#import "VKVideoPlayerCaptionSRT.h"
+#import "VKVideoPlayerAirPlay.h"
+#import "VKVideoPlayerSettingsManager.h"
+#import "VKVideoPlayerTrack.h"
 
-@interface LLDecaVideoCell ()
+#define NotificationName @"LLStopPlay"
 
-@property(strong,nonatomic)AVPlayerItem * playerItem;
-@property(weak,nonatomic)AVPlayerLayer * avlayer;
-@property(weak,nonatomic)AVPlayer * player;
+@interface LLDecaVideoCell ()<VKVideoPlayerDelegate>
+@property (weak, nonatomic) IBOutlet UILabel *brand;
 
+@property(nonatomic,weak)UIView * llloadView;
 @end
 
 
 @implementation LLDecaVideoCell
 
--(AVPlayer *)player
+-(VKVideoPlayer *)vkPlayer
 {
-    if (!_player) {
-        AVPlayer * player = [[AVPlayer alloc]init];
+    if (!_vkPlayer) {
+        _vkPlayer = [[VKVideoPlayer alloc]init];
+        [self.contentView addSubview:_vkPlayer.view];
+        _vkPlayer.delegate = self;
+        _vkPlayer.forceRotate = NO;
         
-        self.avlayer.player = player;
-        _player = player;
     }
-    return _player;
+    return _vkPlayer;
+}
+
+-(void)prepareForReuse
+{
+    [super prepareForReuse];
+    
+    if (_vkPlayer) {
+        _vkPlayer.view.hidden = YES;
+    }
+
 }
 
 - (void)awakeFromNib {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cellTouch:) name:NotificationName object:nil];
+
     //初始化DidSelectCellBlock
     __weak LLDecaVideoCell * weakSelf = self;
     [self setDidSelectCellBlock:^(void){
-        if (![weakSelf.player.currentItem isEqual:weakSelf.playerItem]) {
-            [weakSelf.player replaceCurrentItemWithPlayerItem:weakSelf.playerItem];
-        }
-        
-        weakSelf.player.rate = !weakSelf.player.rate;
-        
-//        weakSelf.avlayer.player = weakSelf.player;
+        //此处block只会执行一次，执行完成后视频播放页面覆盖cell，cell不相应手势
+        [weakSelf postStopNotification];
 
-        
-        if (weakSelf.player.rate) {
-            //隐藏按钮
-            weakSelf.playStateButton.hidden = YES;
-            [weakSelf.player play];
+        [weakSelf.vkPlayer.view setFrame:weakSelf.bounds];
+        if (weakSelf.vkPlayer.view.hidden) {
+            weakSelf.vkPlayer.view.hidden = NO;
+            //清除前面印记
+            [weakSelf.vkPlayer clearCaptions];
         }
-        else
-        {
-            [weakSelf.player pause];
-            weakSelf.playStateButton.hidden = NO;
-        }
- 
+        [weakSelf.vkPlayer loadVideoWithStreamURL:[NSURL URLWithString:weakSelf.data.videouri]];
+        [weakSelf.contentView bringSubviewToFront:weakSelf.brand];
+
     }];
 }
 
--(AVPlayerLayer *)avlayer
+-(void)cellTouch:(NSNotification*)notificaton
 {
-    if (!_avlayer) {
-        AVPlayerLayer * layer = [[AVPlayerLayer alloc] init];
-        [self.contentView.layer addSublayer:layer];
-        _avlayer = layer;
+    if (![notificaton.object isEqual:self]) {
+        //停止播放
+        [self.vkPlayer pauseContent];
     }
-    return _avlayer;
 }
 
 -(void)setData:(LLDSModel *)data
@@ -75,12 +84,9 @@
     //装载数据
     if ([data.type isEqualToString:@"41"])
     {
-        
-        self.backgroundColor = WArcColor;
-        
+        [self llloadView];
         //视频
-        self.playerItem = nil;
-        self.playerItem = [[AVPlayerItem alloc]initWithURL:[NSURL URLWithString:self.data.videouri]];
+        
         //下载封面
         SDWebImageDownloader * downloader = [SDWebImageDownloader sharedDownloader];
         [downloader downloadImageWithURL:[NSURL URLWithString:data.image0] options:SDWebImageDownloaderLowPriority progress:^(NSInteger receivedSize, NSInteger expectedSize) {
@@ -92,10 +98,40 @@
     }
 }
 
+- (void)videoPlayer:(VKVideoPlayer*)videoPlayer didControlByEvent:(VKVideoPlayerControlEvent)event {
+    if (event == VKVideoPlayerControlEventTapDone) {
+        [self.vkPlayer pauseContent];
+    }
+    else if (event == VKVideoPlayerControlEventTapPlayerView)
+    {
+        if (self.vkPlayer.state == VKVideoPlayerStateContentPlaying) {
+            [self.vkPlayer pauseContent];
+        }
+        else if (self.vkPlayer.state == VKVideoPlayerStateContentPaused)
+        {
+            [self.vkPlayer playContent];
+            [self postStopNotification];
+            
+            [self.contentView bringSubviewToFront:self.brand];
+        }
+    }
+    //全屏
+    else if (event == VKVideoPlayerControlEventTapFullScreen)
+    {
+
+    }
+}
+
+-(void)postStopNotification
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:NotificationName object:self];
+}
+
 -(void)didMoveToSuperview
 {
-    self.avlayer.frame = self.bounds;
+    [self.contentView bringSubviewToFront:self.brand];
 }
+
 
 - (IBAction)changePlayState
 {

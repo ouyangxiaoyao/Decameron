@@ -75,10 +75,4 @@
 ////比例
 @property(nonatomic,assign)CGFloat scale;
 
-////headview高度
-//@property(nonatomic,assign)CGFloat heightHeadView;
-////text高度
-//@property(nonatomic,assign)CGFloat heightText;
-////通用信息按钮高度
-//@property(nonatomic,assign)CGFloat heightButton;
 @end

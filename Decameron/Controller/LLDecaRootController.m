@@ -48,6 +48,12 @@
  * 正在播放的cell
  */
 @property(nonatomic,weak)LLCuteButtonController * cuteContrl;
+
+/**
+ *全屏播放辅助数据
+ */
+@property(nonatomic,assign)CGSize realSize;
+@property(nonatomic,assign)BOOL isFullScreen;
 @end
 
 @implementation LLDecaRootController
@@ -81,6 +87,7 @@
         layout.footerHeight = 10;
         layout.minimumColumnSpacing = 2;
         layout.minimumInteritemSpacing = 2;
+        layout.columnCount = 1;
         
         
         UICollectionView * view = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
@@ -142,34 +149,35 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     [collectionView deselectItemAtIndexPath:indexPath animated:NO];
+    
+    [collectionView deselectItemAtIndexPath:indexPath animated:NO];
     UICollectionViewCell * cell = [collectionView cellForItemAtIndexPath:indexPath];
-    //讲正在播放的cell处理
-    if (self.playCell) {
-        self.playCell.didSelectCellBlock();
-        if (![self.playCell isEqual:cell]) {
-            //根据model的type取cell，赋值
-            if ([cell isKindOfClass:[LLDecaVideoCell class]]) {
-                LLDecaVideoCell * cellTmp = (LLDecaVideoCell*)cell;
-                cellTmp.didSelectCellBlock();
-                self.playCell = cellTmp;
-            }
-        }
-        else
-        {
-            self.playCell = nil;
-        }
+    if ([cell isKindOfClass:[LLDecaVideoCell class]]) {
+        LLDecaVideoCell * cellTmp = (LLDecaVideoCell*)cell;
+        cellTmp.didSelectCellBlock();
+        self.playCell = cellTmp;
     }
-    else
+    else if ([cell isKindOfClass:[LLDecaPictureCell class]])
     {
-        if ([cell isKindOfClass:[LLDecaVideoCell class]]) {
-            LLDecaVideoCell * cellTmp = (LLDecaVideoCell*)cell;
-            cellTmp.didSelectCellBlock();
-            self.playCell = cellTmp;
-        }
+        LLDecaPictureCell * cellTmp = (LLDecaPictureCell*)cell;
+        //弹出放大图
     }
-
 }
 
+-(void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([cell isKindOfClass:[LLDecaVideoCell class]]) {
+        LLDecaVideoCell * cellTmp = (LLDecaVideoCell*)cell;
+        [cellTmp.vkPlayer.view removeFromSuperview];
+        cellTmp.vkPlayer = nil;
+        self.playCell = cellTmp;
+    }
+}
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    [self.cuteContrl hideHeaderWith:scrollView.contentOffset.y];
+}
 
 -(void)loadView
 {
@@ -190,7 +198,10 @@
     
     //果冻效果
     [self setupCute];
+    
+    [self.view setBackgroundColor:[UIColor blackColor]];
 }
+
 
 #pragma mark 果冻效果
 -(void)setupCute

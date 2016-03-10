@@ -30,7 +30,10 @@
     [window makeKeyAndVisible];
     
     LLDecaRootController * contrl = [[LLDecaRootController alloc]init];
-    window.rootViewController = contrl;
+    UINavigationController * nav = [[UINavigationController alloc]initWithRootViewController:contrl];
+    nav.navigationBar.hidden = YES;
+    nav.navigationBarHidden  = NO;
+    window.rootViewController = nav;
     
     return YES;
 }

@@ -10,7 +10,7 @@
 #import "LLDSModel.h"
 #import "UIImage+Color.h"
 #import "UIImageView+WebCache.h"
-
+#import "UIImage+FX.h"
 
 @interface LLDecaPictureCell ()
 
@@ -71,8 +71,23 @@
             //隐藏progressview
             self.progressView.hidden = YES;
             
+            
             //调整图片，使得某一节铺满image view
-#warning 待完成
+            //调整图片
+            if (self.data.scale) {
+                //需要调整
+                CGFloat width = self.data.width.floatValue;
+                CGFloat height = self.data.height.floatValue;
+                CGSize size = image.size;
+                if (width > WScreenWidth) {
+                    //根据width调整height
+                    WLog(@"height**%f  width**%f",height,width);
+                    height = height/(width/WScreenWidth);
+                }
+                image = [image imageCroppedAndScaledToSize:CGSizeMake(image.size.width, height) contentMode:UIViewContentModeCenter padToFit:NO];
+                WLog(@"width--%f  height--%f",size.width,height);
+                [self.pictureView setImage:image];
+            }
         }];
         
     }];

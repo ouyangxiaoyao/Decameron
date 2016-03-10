@@ -107,6 +107,10 @@
   if (event == VKVideoPlayerControlEventTapDone) {
     [self dismissViewControllerAnimated:YES completion:nil];
   }
+    else if (event == VKVideoPlayerControlEventTapPlayerView)
+    {
+        
+    }
 }
 
 #pragma mark - Orientation

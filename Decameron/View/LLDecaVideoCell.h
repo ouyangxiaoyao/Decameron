@@ -7,15 +7,21 @@
 //
 #import <AVFoundation/AVFoundation.h>
 #import <UIKit/UIKit.h>
+#import "VKVideoPlayer.h"
+
 @class LLDSModel;
+@class LLDecaVideoCell;
+
 
 typedef void(^DidSelectCellBlock)(void);
+
 @interface LLDecaVideoCell : UICollectionViewCell
 
 @property(nonatomic,copy)DidSelectCellBlock didSelectCellBlock;
 
 @property (weak, nonatomic) IBOutlet UIButton *playStateButton;
 
+@property(nonatomic,strong)VKVideoPlayer * vkPlayer;
 
 
 /*

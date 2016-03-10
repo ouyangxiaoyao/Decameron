@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^PresentClassBlock)(NSString* classString);
 @interface LLCuteButtonController : UIViewController
 
+@property(nonatomic,copy)PresentClassBlock presentClassBlock;
+
+-(void)hideHeaderWith:(CGFloat)y;
 @end

@@ -16,7 +16,7 @@
 #define WColorRGB(r, g, b) WColorRGBA(r, g, b, 1.000f)
 #define WColorRGBA(r, g, b, a) [UIColor colorWithRed:(r) / 255.0 green:(g) / 255.0 blue:(b) / 255.0 alpha:(a)]
 // 随机颜色
-#define WArcColor WColorRGB(WArcNum(128) + 128, WArcNum(128) + 128, WArcNum(128) + 128)
+#define WArcColor WColorRGB(WArcNum(128) + 128, WArcNum(128) + 128, WArcNum(128) + 28)
 
 #define WColorFromRGB(rgbValue) \
 [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
@@ -131,6 +131,9 @@ static NSString *const WTestInAppKey = @"e1f2d2d7af9f9071ac4b02addf341fcd";
 static NSString *const WUMengAppKey = @"5569841667e58e4a1d000386";
 static NSString *const WAppStoreLink = @"itms-apps://itunes.apple.com/cn/app/jian-zhi-wei-shi/id984365130?l=zh&ls=1&mt=8";
 static NSString *const WJPushAppKey = @"fb7e18b932e897656d130e09";
+
+//微信appkey
+static NSString * const WWXAppKey = @"wxcb7317378313570d";
 //申请的环信key
 static NSString *const WEaseMobAppKey = @"hctd#hctd520";
 

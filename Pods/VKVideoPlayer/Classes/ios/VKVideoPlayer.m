@@ -202,7 +202,7 @@ typedef enum {
   [defaultCenter addObserver:self selector:@selector(volumeChanged:) name:@"AVSystemController_SystemVolumeDidChangeNotification" object:nil];
 
   [defaultCenter addObserver:self selector:@selector(reachabilityChanged:) name:kReachabilityChangedNotification object:nil];
-  [defaultCenter addObserver:self selector:@selector(playerItemReadyToPlay) name:kVKVideoPlayerItemReadyToPlay object:nil];
+    [defaultCenter addObserver:self selector:@selector(playerItemReadyToPlay:) name:kVKVideoPlayerItemReadyToPlay object:nil];
   [defaultCenter addObserver:self selector:@selector(orientationChanged:) name:UIDeviceOrientationDidChangeNotification object:[UIDevice currentDevice]];
 
   NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
@@ -330,17 +330,19 @@ typedef enum {
 }
 
 - (void)playerDidPlayToEnd:(NSNotification *)notification {
-  DDLogVerbose(@"Player: Did play to the end");
-  RUN_ON_UI_THREAD(^{
-
-    self.track.isPlayedToEnd = YES;
-    [self pauseContent:NO completionHandler:^{
-      if ([self.delegate respondsToSelector:@selector(videoPlayer:didPlayToEnd:)]) {
-        [self.delegate videoPlayer:self didPlayToEnd:self.track];
-      }
-    }];
-
-  });
+    if ([notification.object isEqual:_playerItem]) {
+        DDLogVerbose(@"Player: Did play to the end");
+        RUN_ON_UI_THREAD(^{
+            
+            self.track.isPlayedToEnd = YES;
+            [self pauseContent:NO completionHandler:^{
+                if ([self.delegate respondsToSelector:@selector(videoPlayer:didPlayToEnd:)]) {
+                    [self.delegate videoPlayer:self didPlayToEnd:self.track];
+                }
+            }];
+            
+        });
+    }
 }
 
 #pragma mark - AVPlayer wrappers
@@ -456,28 +458,31 @@ typedef enum {
   }];  
 }
 
-- (void)playerItemReadyToPlay {
+- (void)playerItemReadyToPlay:(NSNotification*) notification {
   
-  DDLogVerbose(@"Player: playerItemReadyToPlay");
-  
-  RUN_ON_UI_THREAD(^{
-    switch (self.state) {
-      case VKVideoPlayerStateContentPaused:
-        break;
-      case VKVideoPlayerStateContentLoading:{}
-      case VKVideoPlayerStateError:{
-        [self pauseContent:NO completionHandler:^{
-          if ([self.delegate respondsToSelector:@selector(videoPlayer:willStartVideo:)]) {
-            [self.delegate videoPlayer:self willStartVideo:self.track];
-          }
-          [self seekToLastWatchedDuration];
-        }];
-        break;
-      }
-      default:
-        break;
-    }    
-  });
+    if ([notification.object isEqual:self]) {
+        DDLogVerbose(@"Player: playerItemReadyToPlay");
+        
+        RUN_ON_UI_THREAD(^{
+            switch (self.state) {
+                case VKVideoPlayerStateContentPaused:
+                    break;
+                case VKVideoPlayerStateContentLoading:{}
+                case VKVideoPlayerStateError:{
+                    [self pauseContent:NO completionHandler:^{
+                        if ([self.delegate respondsToSelector:@selector(videoPlayer:willStartVideo:)]) {
+                            [self.delegate videoPlayer:self willStartVideo:self.track];
+                        }
+                        [self seekToLastWatchedDuration];
+                    }];
+                    break;
+                }
+                default:
+                    break;
+            }    
+        });
+
+    }
 }
 
 - (void)setPlayerItem:(AVPlayerItem *)playerItem {
@@ -648,7 +653,7 @@ typedef enum {
         case AVPlayerStatusReadyToPlay:
           DDLogVerbose(@"AVPlayerStatusReadyToPlay");
           if (self.playerItem.status == AVPlayerItemStatusReadyToPlay) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:kVKVideoPlayerItemReadyToPlay object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:kVKVideoPlayerItemReadyToPlay object:self];
           }
           break;
         case AVPlayerStatusFailed:
@@ -664,14 +669,14 @@ typedef enum {
     if ([keyPath isEqualToString:@"playbackBufferEmpty"]) {
       DDLogVerbose(@"playbackBufferEmpty: %@", self.playerItem.isPlaybackBufferEmpty ? @"yes" : @"no");
       if (self.playerItem.isPlaybackBufferEmpty && [self currentTime] > 0 && [self currentTime] < [self.player currentItemDuration] - 1 && self.state == VKVideoPlayerStateContentPlaying) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:kVKVideoPlayerPlaybackBufferEmpty object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kVKVideoPlayerPlaybackBufferEmpty object:self];
       }
     }
     if ([keyPath isEqualToString:@"playbackLikelyToKeepUp"]) {
       DDLogVerbose(@"playbackLikelyToKeepUp: %@", self.playerItem.playbackLikelyToKeepUp ? @"yes" : @"no");
       if (self.playerItem.playbackLikelyToKeepUp) {
         if (self.state == VKVideoPlayerStateContentPlaying && ![self isPlayingVideo]) {
-          [[NSNotificationCenter defaultCenter] postNotificationName:kVKVideoPlayerPlaybackLikelyToKeepUp object:nil];
+          [[NSNotificationCenter defaultCenter] postNotificationName:kVKVideoPlayerPlaybackLikelyToKeepUp object:self];
           [self.player play];
         }
       }
@@ -681,7 +686,7 @@ typedef enum {
         case AVPlayerItemStatusReadyToPlay:
           DDLogVerbose(@"AVPlayerItemStatusReadyToPlay");
           if ([self.avPlayer status] == AVPlayerStatusReadyToPlay) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:kVKVideoPlayerItemReadyToPlay object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:kVKVideoPlayerItemReadyToPlay object:self];
           }
           break;
         case AVPlayerItemStatusFailed:
@@ -812,7 +817,7 @@ typedef enum {
     if ([self.delegate respondsToSelector:@selector(videoPlayer:didChangeStateFrom:)]) {
       [self.delegate videoPlayer:self didChangeStateFrom:oldPlayerState];
     }
-    [[NSNotificationCenter defaultCenter] postNotificationName:kVKVideoPlayerStateChanged object:nil userInfo:@{
+    [[NSNotificationCenter defaultCenter] postNotificationName:kVKVideoPlayerStateChanged object:self userInfo:@{
                                                                                                                 @"oldState":[NSNumber numberWithInteger:oldPlayerState],
                                                                                                                 @"newState":[NSNumber numberWithInteger:newPlayerState]
                                                                                                                 }];

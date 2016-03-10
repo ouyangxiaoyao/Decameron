@@ -106,6 +106,8 @@
   [self.topPortraitCloseButton addTarget:self action:@selector(doneButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
   
   self.playerControlsAutoHideTime = @5;
+    
+//    self.playButton.hidden = YES;
 }
 
 - (id)initWithFrame:(CGRect)frame {
@@ -197,22 +199,26 @@
 }
 
 - (void)durationDidLoad:(NSNotification *)notification {
-  NSDictionary *info = [notification userInfo];
-  NSNumber* duration = [info objectForKey:@"duration"];
-  [self.delegate videoTrack].totalVideoDuration = duration;
-  RUN_ON_UI_THREAD(^{
-    self.scrubber.maximumValue = [duration floatValue];
-    self.scrubber.hidden = NO;
-  });
+    if ([notification.object isEqual:self.delegate]) {
+        NSDictionary *info = [notification userInfo];
+        NSNumber* duration = [info objectForKey:@"duration"];
+        [self.delegate videoTrack].totalVideoDuration = duration;
+        RUN_ON_UI_THREAD(^{
+            self.scrubber.maximumValue = [duration floatValue];
+            self.scrubber.hidden = NO;
+        });
+    }
 }
 
 - (void)scrubberValueUpdated:(NSNotification *)notification {
-  NSDictionary *info = [notification userInfo];
-  RUN_ON_UI_THREAD(^{
-    DDLogVerbose(@"scrubberValueUpdated: %@", [info objectForKey:@"scrubberValue"]);
-    [self.scrubber setValue:[[info objectForKey:@"scrubberValue"] floatValue] animated:YES];
-    [self updateTimeLabels];
-  });
+    if ([notification.object isEqual:self.delegate]) {
+        NSDictionary *info = [notification userInfo];
+        RUN_ON_UI_THREAD(^{
+            DDLogVerbose(@"scrubberValueUpdated: %@", [info objectForKey:@"scrubberValue"]);
+            [self.scrubber setValue:[[info objectForKey:@"scrubberValue"] floatValue] animated:YES];
+            [self updateTimeLabels];
+        });
+    }
 }
 
 - (void)updateTimeLabels {
@@ -261,12 +267,12 @@
 }
 
 - (void)setPlayButtonsSelected:(BOOL)selected {
-  self.playButton.selected = selected;
+//  self.playButton.selected = selected;
   self.bigPlayButton.selected = selected;
 }
 
 - (void)setPlayButtonsEnabled:(BOOL)enabled {
-  self.playButton.enabled = enabled;
+//  self.playButton.enabled = enabled;
   self.bigPlayButton.enabled = enabled;
 }
 

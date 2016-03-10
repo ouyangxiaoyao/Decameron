@@ -55,7 +55,7 @@
 @property (nonatomic, strong) IBOutlet VKPickerButton* videoQualityButton;
 @property (nonatomic, strong) IBOutlet UIButton* topSettingsButton;
 
-@property (nonatomic, strong) IBOutlet UIButton* playButton;
+//@property (nonatomic, strong) IBOutlet UIButton* playButton;
 @property (nonatomic, strong) IBOutlet UIButton* nextButton;
 @property (nonatomic, strong) IBOutlet UILabel* currentTimeLabel;
 @property (nonatomic, strong) IBOutlet VKScrubber* scrubber;
