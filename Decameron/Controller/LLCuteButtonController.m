@@ -10,12 +10,15 @@
 
 #import "LLCuteButtonController.h"
 
+#import "SVProgressHUD.h"
+
 @interface LLCuteButtonController ()<UIScrollViewDelegate>
 
 @property(nonatomic,strong)NSArray<UIButton*> * buttonArray;
 @property(nonatomic,weak)UIScrollView * scrollView;
 @property(nonatomic,assign)CGFloat lastOffSet;
 @property(nonatomic,strong)NSArray * titleArray;
+@property(nonatomic,weak)UIButton * lastSelectedButton;
 
 @end
 
@@ -84,13 +87,22 @@ static int buttonCounter = 8;
     [super viewDidAppear:animated];
     
     //统一加上一个CAGradientLayer
+    BOOL isFrist = YES;
     for (UIButton * button in self.buttonArray) {
         CAGradientLayer * gradientLayer = [CAGradientLayer layer];
         gradientLayer.startPoint = CGPointMake(0, 0);
         gradientLayer.endPoint = CGPointMake(1, 0);
         gradientLayer.frame = button.bounds;
         gradientLayer.locations = @[@(0.35),@(0.65)];
-        gradientLayer.colors = @[(id)[UIColor blackColor].CGColor,(id)[UIColor whiteColor].CGColor,(id)[UIColor blackColor].CGColor];
+        if (isFrist) {
+            gradientLayer.colors = @[(id)[UIColor redColor].CGColor,(id)[UIColor whiteColor].CGColor,(id)[UIColor redColor].CGColor];
+            self.lastSelectedButton = button;
+            isFrist = NO;
+        }
+        else
+        {
+            gradientLayer.colors = @[(id)[UIColor blackColor].CGColor,(id)[UIColor whiteColor].CGColor,(id)[UIColor blackColor].CGColor];
+        }
         
         [button.layer addSublayer:gradientLayer];
         
@@ -103,38 +115,60 @@ static int buttonCounter = 8;
 -(void)cuteButtonTouch:(UIButton *)sender
 {
     //button动画
-    CATransition *lldonghua = [CATransition animation];
-    lldonghua.duration = 1.0;
-    lldonghua.type = @"rippleEffect";
-    [sender.layer addAnimation:lldonghua forKey:nil];
+//    CATransition *lldonghua = [CATransition animation];
+//    lldonghua.duration = 1.0;
+//    lldonghua.type = @"";
+//    [sender.layer addAnimation:lldonghua forKey:nil];
+    NSString * type;
     
     //跳转到相应控制器
     switch (sender.tag) {
         case 10:
             //全部
+            type = @"1";
             break;
             case 11:
             //内涵图
+            type = @"10";
             break;
             case 12:
             //段子
+            type = @"29";
             break;
             case 13:
             //视频
-            break;
-            case 14:
-            //地图加即时通讯
+            type = @"41";
             break;
         default:
+            [SVProgressHUD showInfoWithStatus:@"筹备中，敬请期待"];
+            return;
             break;
     }
+    if (type) {
+        self.presentClassBlock(type);
+    }
+    //改变颜色，使其认出被选中button
+    for (CALayer * subLayer in sender.layer.sublayers) {
+        if ([subLayer isKindOfClass:[CAGradientLayer class]]) {
+            CAGradientLayer * gradientLayer = (CAGradientLayer*)subLayer;
+            gradientLayer.colors = @[(id)[UIColor redColor].CGColor,(id)[UIColor whiteColor].CGColor,(id)[UIColor redColor].CGColor];
+        }
+    }
+    for (CALayer * subLayer in self.lastSelectedButton.layer.sublayers) {
+        if ([subLayer isKindOfClass:[CAGradientLayer class]]) {
+            CAGradientLayer * gradientLayer = (CAGradientLayer*)subLayer;
+            gradientLayer.colors = @[(id)[UIColor blackColor].CGColor,(id)[UIColor whiteColor].CGColor,(id)[UIColor blackColor].CGColor];
+        }
+    }
+
+    self.lastSelectedButton = sender;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     [self.view setBackgroundColor:[UIColor whiteColor]];
-    self.titleArray = @[@"全部",@"内涵图",@"段子",@"小视频",@"男男女女",@"惊喜",@"你猜",@""];
+    self.titleArray = @[@"全部",@"内涵图",@"段子",@"小视频",@"",@"",@"",@""];
 
     //果冻效果
     //四个button
@@ -143,10 +177,10 @@ static int buttonCounter = 8;
 
 -(void)hideHeaderWith:(CGFloat)y
 {
-    WLog(@"y--%f  heightCuteView--%f",y,heightCuteView);
-    CGFloat scale = heightCuteView/y;
-    self.view.alpha = scale;
-    WLog(@"alpha--%f",scale);
+//    WLog(@"y--%f  heightCuteView--%f",y,heightCuteView);
+//    CGFloat scale = heightCuteView/y;
+//    self.view.alpha = scale;
+//    WLog(@"alpha--%f",scale);
 }
 
 #pragma mark UIScrollViewDelegate

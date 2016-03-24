@@ -30,6 +30,14 @@
         self.height = [NSString stringWithFormat:@"%f",height];
         
     }
+    
+    if ([self.type isEqualToString:@"29"]) {
+        //文字
+        CGFloat height = [self.text heightWithFont:titleFont constrainedToWidth:(WScreenWidth-WPedding*2)];
+        height += 40;
+        self.height = [NSString stringWithFormat:@"%f",height];
+        self.width = [NSString stringWithFormat:@"%f",WScreenWidth];
+    }
 }
 
 @end

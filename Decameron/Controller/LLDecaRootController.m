@@ -13,6 +13,7 @@
 #import "LLDecaRootController.h"
 #import "CHTCollectionViewWaterfallLayout.h"
 #import "LLDecaPictureCell.h"
+#import "LLDecaTextCell.h"
 #import "LLDSModel.h"
 #import "LLDSManagerModel.h"
 #import "QFNetHelp.h"
@@ -20,13 +21,11 @@
 #import "LLDecaVideoCell.h"
 #import "LLCuteButtonController.h"
 
+#import "UIView+Screenshot.h"
 
+#import "MJExtension.h"
+#import "MJRefresh.h"
 @interface LLDecaRootController ()<UICollectionViewDataSource,UICollectionViewDelegate,CHTCollectionViewDelegateWaterfallLayout>
-
-@property(nonatomic,weak)UIButton * all;
-@property(nonatomic,weak)UIButton * picture;
-@property(nonatomic,weak)UIButton * text;
-@property(nonatomic,weak)UIButton * video;
 
 @property(nonatomic,weak)UICollectionView * collectionView;
 
@@ -37,7 +36,6 @@
 
 @property(nonatomic,strong)LLDSManagerModel * infoModel;
 
-@property(nonatomic,strong)NSString * type;
 
 /*
  * 正在播放的cell
@@ -50,17 +48,50 @@
 @property(nonatomic,weak)LLCuteButtonController * cuteContrl;
 
 /**
- *全屏播放辅助数据
+ * 控制动画适时停止的两个变量
  */
-@property(nonatomic,assign)CGSize realSize;
-@property(nonatomic,assign)BOOL isFullScreen;
+@property(nonatomic,assign)BOOL isTimeFull;
+@property(nonatomic,assign)BOOL isRefreshComplish;
+
+/**
+ * 滚到头顶
+ */
+@property(nonatomic,assign)BOOL needScrollToTop;
+
 @end
 
 @implementation LLDecaRootController
+#pragma mark 控制动画适时停止
+-(void)setIsTimeFull:(BOOL)isTimeFull
+{
+    _isTimeFull = isTimeFull;
+    
+    if (_isRefreshComplish&&_isTimeFull) {
+        CGRect frame = self.cuteContrl.view.frame;
+        frame.origin.y += 10;
+        self.cuteContrl.view.frame = frame;
+        [self.cuteContrl.view.layer removeAllAnimations];
+        _isRefreshComplish = NO;
+        _isTimeFull = NO;
+    }
+}
 
+-(void)setIsRefreshComplish:(BOOL)isRefreshComplish
+{
+    _isRefreshComplish = isRefreshComplish;
+    
+    if (_isRefreshComplish&&_isTimeFull) {
+        CGRect frame = self.cuteContrl.view.frame;
+        frame.origin.y += 10;
+        self.cuteContrl.view.frame = frame;
+        [self.cuteContrl.view.layer removeAllAnimations];
+        _isRefreshComplish = NO;
+        _isTimeFull = NO;
+    }
+}
 
 //懒加载
-
+#pragma mark 懒加载
 -(NSArray *)datasource
 {
     if (!_datasource) {
@@ -69,15 +100,8 @@
     return _datasource;
 }
 
--(UIButton *)all
-{
-    if (!_all) {
-        UIButton * view = [[UIButton alloc]init];
-        [self.view addSubview:view];
-    }
-    return _all;
-}
 
+#pragma mark collectionview设置
 - (UICollectionView *)collectionView {
     if (!_collectionView) {
         CHTCollectionViewWaterfallLayout *layout = [[CHTCollectionViewWaterfallLayout alloc] init];
@@ -99,10 +123,49 @@
         [_collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([LLDecaPictureCell class]) bundle:nil] forCellWithReuseIdentifier:NSStringFromClass([LLDecaPictureCell class])];
         [_collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([LLDecaVideoCell class]) bundle:nil] forCellWithReuseIdentifier:NSStringFromClass([LLDecaVideoCell class])];
         [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"test"];
+        [_collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([LLDecaTextCell class]) bundle:nil] forCellWithReuseIdentifier:NSStringFromClass([LLDecaTextCell class])];
         
+        
+        __weak typeof(self) weakSelf = self;
+        MJRefreshStateHeader * header=[MJRefreshStateHeader headerWithRefreshingBlock:^{
+            weakSelf.infoModel = nil;
+            [weakSelf quest];
+            [weakSelf cuteViewAnimateWhenHeadRefresh];
+        }];
+        header.lastUpdatedTimeText = ^NSString*(NSDate * text){
+            return [NSString stringWithFormat:@"~屌丝女士为你刷新~"];
+        };
+        header.ignoredScrollViewContentInsetTop = -heightCuteView - 30;
+        
+        MJRefreshAutoNormalFooter * footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+            [weakSelf quest];
+            [weakSelf cuteViewAnimateWhenHeadRefresh];
+        }];
+        
+        _collectionView.mj_footer = footer;
+        _collectionView.mj_header = header;
         [self.view addSubview:_collectionView];
     }
     return _collectionView;
+}
+
+#pragma mark 头部刷新时cuteview的动画
+-(void)cuteViewAnimateWhenHeadRefresh
+{
+    self.isRefreshComplish = NO;
+    self.isTimeFull = NO;
+    [UIView animateWithDuration:1.0 delay:0 usingSpringWithDamping:0.1 initialSpringVelocity:0.5 options:UIViewAnimationOptionRepeat|UIViewAnimationOptionLayoutSubviews|UIViewAnimationOptionCurveLinear animations:^{
+        CGRect frame = self.cuteContrl.view.frame;
+        frame.origin.y -= 10;
+        self.cuteContrl.view.frame = frame;
+    } completion:^(BOOL finished) {
+        //
+    }];
+    
+    //定时器，两秒后执行
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.isTimeFull = YES;
+    });
 }
 
 #pragma mark collection数据源
@@ -116,9 +179,15 @@
     UICollectionViewCell * cell;
     LLDSModel * model = self.datasource[indexPath.item];
     //根据model的type取cell，赋值
+    __weak typeof(self) weakSelf = self;
+
     if ([model.type isEqualToString:@"10"]) {
         LLDecaPictureCell * cellTmp = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([LLDecaPictureCell class]) forIndexPath:indexPath];
         cellTmp.data = model;
+        [cellTmp setShareBlock:^(UICollectionViewCell * clickedCell,NSString* shareUrl)
+        {
+            [weakSelf share:clickedCell url:shareUrl];
+        }];
         
         cell = cellTmp;
     }
@@ -126,6 +195,17 @@
     {
         LLDecaVideoCell * cellTmp = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([LLDecaVideoCell class]) forIndexPath:indexPath];
         cellTmp.data = model;
+        [cellTmp setShareBlock:^(UICollectionViewCell * clickedCell,NSString* shareUrl)
+         {
+             [weakSelf share:clickedCell url:shareUrl];
+         }];
+        
+        cell = cellTmp;
+    }
+    else if ([model.type isEqualToString:@"29"]){
+        LLDecaTextCell * cellTmp = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([LLDecaTextCell class]) forIndexPath:indexPath];
+        cellTmp.data = model;
+        [cellTmp setBackgroundColor:WArcColor];
         
         cell = cellTmp;
     }
@@ -179,36 +259,34 @@
     [self.cuteContrl hideHeaderWith:scrollView.contentOffset.y];
 }
 
--(void)loadView
-{
-    [super loadView];
-    /*
-     界面设计，四个大圆button分为图片，段子，视频，全部，瀑布流设计
-     button要有浮动的效果
-     */
-    
-}
-
+#pragma mark viewDidLoad
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+
     //网络请求
-    self.type = @"41";
-    [self quest];
+    self.type = @"1";
     
     //果冻效果
     [self setupCute];
     
     [self.view setBackgroundColor:[UIColor blackColor]];
+    
+    //初始化参数
+    self.needScrollToTop = NO;
 }
 
 
-#pragma mark 果冻效果
+#pragma mark button控制器
 -(void)setupCute
 {
     LLCuteButtonController * cuteContrl = [[LLCuteButtonController alloc]init];
     [self addChildViewController:cuteContrl];
     [self.view addSubview:cuteContrl.view];
+    __weak typeof(self) weakSelf = self;
+    [cuteContrl setPresentClassBlock:^(NSString * type){
+        weakSelf.type = type;
+    }];
     //这里要根据宽度决定cute view 的高度
     
     [cuteContrl.view setFrame:CGRectMake(0, 0, WScreenWidth, heightCuteView)];
@@ -216,6 +294,22 @@
 }
 
 #pragma mark 网络请求
+-(void)setType:(NSString *)type
+{
+    if (![_type isEqualToString:type]) {
+        if (_type) {
+            [self cuteViewAnimateWhenHeadRefresh];
+            self.needScrollToTop = YES;
+        }
+        _type = type;
+        
+        self.datasource = nil;
+        
+        [self quest];
+
+    }
+}
+
 -(void)quest
 {
     //网络请求
@@ -233,17 +327,33 @@
             NSArray * arrayTmp = [LLDSModel mj_objectArrayWithKeyValuesArray:[obj objectForKey:@"list"]];
             [arrayTmp makeObjectsPerformSelector:@selector(caculate)];
             self.datasource = [self.datasource arrayByAddingObjectsFromArray:arrayTmp];
-            WLog(@"success");
+            WLog(@"success type %@",self.type);
             
             [self.collectionView reloadData];
+            if (self.needScrollToTop) {
+//                NSIndexPath * topPath = [NSIndexPath indexPathForItem:0 inSection:0];
+//                [self.collectionView scrollToItemAtIndexPath:topPath atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
+                self.collectionView.contentOffset = CGPointMake(0, -heightCuteView);
+                self.needScrollToTop = NO;
+            }
+            self.collectionView.mj_header.state = MJRefreshStateIdle;
+            self.collectionView.mj_footer.state = MJRefreshStateIdle;
+            self.isRefreshComplish = YES;
             [self.view bringSubviewToFront:self.cuteContrl.view];
         }
         else
         {
+            self.collectionView.mj_header.state = MJRefreshStateIdle;
+            self.collectionView.mj_footer.state = MJRefreshStateIdle;
+            self.isRefreshComplish = YES;
             NSLog(@"error %@",result);
         }
     }];
     
 }
 
+#pragma mark 分享功能
+-(void)share:(UICollectionViewCell*)clickCell url:(NSString*)shareUrl
+{
+}
 @end

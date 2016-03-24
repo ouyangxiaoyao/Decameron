@@ -7,13 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1CA52485FE759BF84358E72C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 52A3A04CAE5BB9904B24FEB4 /* libPods.a */; };
+		60C258C45ABF9861BF022DD3 /* libPods-Decameron.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E8F1EB9F933B87957CF79AE /* libPods-Decameron.a */; };
 		6A038D861C87ECE00052C05F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A038D851C87ECE00052C05F /* main.m */; };
 		6A038D8F1C87ECE00052C05F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A038D8D1C87ECE00052C05F /* Main.storyboard */; };
 		6A038D911C87ECE00052C05F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A038D901C87ECE00052C05F /* Assets.xcassets */; };
-		6A038D941C87ECE00052C05F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A038D921C87ECE00052C05F /* LaunchScreen.storyboard */; };
 		6A038D9F1C87ECE00052C05F /* DecameronTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A038D9E1C87ECE00052C05F /* DecameronTests.m */; };
 		6A038DAA1C87ECE00052C05F /* DecameronUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A038DA91C87ECE00052C05F /* DecameronUITests.m */; };
+		6A088D801C911CDD00ADE38A /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A088D7D1C911CDD00ADE38A /* libWeChatSDK.a */; };
+		6A088D821C911D1500ADE38A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A088D811C911D1500ADE38A /* SystemConfiguration.framework */; };
+		6A088D841C911D4C00ADE38A /* libz.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A088D831C911D4C00ADE38A /* libz.1.dylib */; };
+		6A088D861C911D6D00ADE38A /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A088D851C911D6D00ADE38A /* libsqlite3.dylib */; };
+		6A088D881C911D8A00ADE38A /* libc++.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A088D871C911D8A00ADE38A /* libc++.1.dylib */; };
 		6A23A9501C8823F500B247DC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A23A8831C8823F400B247DC /* AppDelegate.m */; };
 		6A23A9511C8823F500B247DC /* NSDate+Formatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A23A8891C8823F400B247DC /* NSDate+Formatter.m */; };
 		6A23A9521C8823F500B247DC /* NSDate+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A23A88B1C8823F400B247DC /* NSDate+Helper.m */; };
@@ -89,11 +93,13 @@
 		6A23A9A81C8823F500B247DC /* LLDecaPictureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A23A94E1C8823F500B247DC /* LLDecaPictureCell.m */; };
 		6A23A9A91C8823F500B247DC /* LLDecaPictureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A23A94F1C8823F500B247DC /* LLDecaPictureCell.xib */; };
 		6A23A9AC1C882A6200B247DC /* QFNetHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A23A9AB1C882A6200B247DC /* QFNetHelp.m */; };
+		6A3D6E8E1C9148EF007194AD /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A3D6E8D1C9148EF007194AD /* CoreTelephony.framework */; };
+		6AE17CB21CA0245800EF4DE2 /* LLDecaTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AE17CB01CA0245800EF4DE2 /* LLDecaTextCell.m */; };
+		6AE17CB31CA0245800EF4DE2 /* LLDecaTextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AE17CB11CA0245800EF4DE2 /* LLDecaTextCell.xib */; };
 		6AE2713F1C892334003E769C /* LLCuteButtonController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AE2713E1C892334003E769C /* LLCuteButtonController.m */; };
 		6AE3B0D21C885225001E96F1 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AE3B0D11C885225001E96F1 /* AVFoundation.framework */; };
 		6AE3B0D61C8854FE001E96F1 /* LLDecaVideoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AE3B0D41C8854FE001E96F1 /* LLDecaVideoCell.m */; };
 		6AE3B0D71C8854FE001E96F1 /* LLDecaVideoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AE3B0D51C8854FE001E96F1 /* LLDecaVideoCell.xib */; };
-		6AE3B0DA1C88782D001E96F1 /* LLVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AE3B0D91C88782D001E96F1 /* LLVideoView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,12 +120,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		52A3A04CAE5BB9904B24FEB4 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		319EB312BB5DAB54BDBBA413 /* Pods-Decameron.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Decameron.release.xcconfig"; path = "Pods/Target Support Files/Pods-Decameron/Pods-Decameron.release.xcconfig"; sourceTree = "<group>"; };
 		6A038D811C87ECDF0052C05F /* Decameron.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Decameron.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A038D851C87ECE00052C05F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6A038D8E1C87ECE00052C05F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6A038D901C87ECE00052C05F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../Assets.xcassets; sourceTree = "<group>"; };
-		6A038D931C87ECE00052C05F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6A038D951C87ECE00052C05F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6A038D9A1C87ECE00052C05F /* DecameronTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DecameronTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A038D9E1C87ECE00052C05F /* DecameronTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DecameronTests.m; sourceTree = "<group>"; };
@@ -127,6 +132,13 @@
 		6A038DA51C87ECE00052C05F /* DecameronUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DecameronUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A038DA91C87ECE00052C05F /* DecameronUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DecameronUITests.m; sourceTree = "<group>"; };
 		6A038DAB1C87ECE00052C05F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6A088D7D1C911CDD00ADE38A /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		6A088D7E1C911CDD00ADE38A /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
+		6A088D7F1C911CDD00ADE38A /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		6A088D811C911D1500ADE38A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		6A088D831C911D4C00ADE38A /* libz.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.dylib; path = ../../../../../usr/lib/libz.1.dylib; sourceTree = "<group>"; };
+		6A088D851C911D6D00ADE38A /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = ../../../../../usr/lib/libsqlite3.dylib; sourceTree = "<group>"; };
+		6A088D871C911D8A00ADE38A /* libc++.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.1.dylib"; path = "../../../../../usr/lib/libc++.1.dylib"; sourceTree = "<group>"; };
 		6A23A8801C8823D800B247DC /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		6A23A8821C8823F400B247DC /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		6A23A8831C8823F400B247DC /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -278,16 +290,18 @@
 		6A23A94F1C8823F500B247DC /* LLDecaPictureCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LLDecaPictureCell.xib; sourceTree = "<group>"; };
 		6A23A9AA1C882A6200B247DC /* QFNetHelp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QFNetHelp.h; sourceTree = "<group>"; };
 		6A23A9AB1C882A6200B247DC /* QFNetHelp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QFNetHelp.m; sourceTree = "<group>"; };
+		6A3D6E8D1C9148EF007194AD /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		6AE17CAF1CA0245800EF4DE2 /* LLDecaTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLDecaTextCell.h; sourceTree = "<group>"; };
+		6AE17CB01CA0245800EF4DE2 /* LLDecaTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLDecaTextCell.m; sourceTree = "<group>"; };
+		6AE17CB11CA0245800EF4DE2 /* LLDecaTextCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LLDecaTextCell.xib; sourceTree = "<group>"; };
 		6AE2713D1C892334003E769C /* LLCuteButtonController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLCuteButtonController.h; sourceTree = "<group>"; };
 		6AE2713E1C892334003E769C /* LLCuteButtonController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLCuteButtonController.m; sourceTree = "<group>"; };
 		6AE3B0D11C885225001E96F1 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		6AE3B0D31C8854FE001E96F1 /* LLDecaVideoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLDecaVideoCell.h; sourceTree = "<group>"; };
 		6AE3B0D41C8854FE001E96F1 /* LLDecaVideoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLDecaVideoCell.m; sourceTree = "<group>"; };
 		6AE3B0D51C8854FE001E96F1 /* LLDecaVideoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LLDecaVideoCell.xib; sourceTree = "<group>"; };
-		6AE3B0D81C88782D001E96F1 /* LLVideoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLVideoView.h; sourceTree = "<group>"; };
-		6AE3B0D91C88782D001E96F1 /* LLVideoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLVideoView.m; sourceTree = "<group>"; };
-		6EC4AEDC09AFBCD6FD28562B /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		F32C3BF334AC080D8C6B913F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		8AADE129E866F7499CB6F850 /* Pods-Decameron.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Decameron.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Decameron/Pods-Decameron.debug.xcconfig"; sourceTree = "<group>"; };
+		8E8F1EB9F933B87957CF79AE /* libPods-Decameron.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Decameron.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -295,8 +309,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A3D6E8E1C9148EF007194AD /* CoreTelephony.framework in Frameworks */,
+				6A088D881C911D8A00ADE38A /* libc++.1.dylib in Frameworks */,
+				6A088D861C911D6D00ADE38A /* libsqlite3.dylib in Frameworks */,
+				6A088D841C911D4C00ADE38A /* libz.1.dylib in Frameworks */,
+				6A088D821C911D1500ADE38A /* SystemConfiguration.framework in Frameworks */,
 				6AE3B0D21C885225001E96F1 /* AVFoundation.framework in Frameworks */,
-				1CA52485FE759BF84358E72C /* libPods.a in Frameworks */,
+				6A088D801C911CDD00ADE38A /* libWeChatSDK.a in Frameworks */,
+				60C258C45ABF9861BF022DD3 /* libPods-Decameron.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,17 +340,22 @@
 		02F96D53DE9E0D23559F406B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6A3D6E8D1C9148EF007194AD /* CoreTelephony.framework */,
+				6A088D871C911D8A00ADE38A /* libc++.1.dylib */,
+				6A088D851C911D6D00ADE38A /* libsqlite3.dylib */,
+				6A088D831C911D4C00ADE38A /* libz.1.dylib */,
+				6A088D811C911D1500ADE38A /* SystemConfiguration.framework */,
 				6AE3B0D11C885225001E96F1 /* AVFoundation.framework */,
-				52A3A04CAE5BB9904B24FEB4 /* libPods.a */,
+				8E8F1EB9F933B87957CF79AE /* libPods-Decameron.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		38A086015F802CC674886E19 /* Pods */ = {
+		265674333195F6B3889E1CF4 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				6EC4AEDC09AFBCD6FD28562B /* Pods.debug.xcconfig */,
-				F32C3BF334AC080D8C6B913F /* Pods.release.xcconfig */,
+				8AADE129E866F7499CB6F850 /* Pods-Decameron.debug.xcconfig */,
+				319EB312BB5DAB54BDBBA413 /* Pods-Decameron.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -342,8 +367,8 @@
 				6A038D9D1C87ECE00052C05F /* DecameronTests */,
 				6A038DA81C87ECE00052C05F /* DecameronUITests */,
 				6A038D821C87ECDF0052C05F /* Products */,
-				38A086015F802CC674886E19 /* Pods */,
 				02F96D53DE9E0D23559F406B /* Frameworks */,
+				265674333195F6B3889E1CF4 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -398,12 +423,21 @@
 			path = DecameronUITests;
 			sourceTree = "<group>";
 		};
+		6A088D7C1C911CDD00ADE38A /* WeChat */ = {
+			isa = PBXGroup;
+			children = (
+				6A088D7D1C911CDD00ADE38A /* libWeChatSDK.a */,
+				6A088D7E1C911CDD00ADE38A /* WXApi.h */,
+				6A088D7F1C911CDD00ADE38A /* WXApiObject.h */,
+			);
+			path = WeChat;
+			sourceTree = "<group>";
+		};
 		6A23A8811C8823F400B247DC /* Application */ = {
 			isa = PBXGroup;
 			children = (
 				6A038D8D1C87ECE00052C05F /* Main.storyboard */,
 				6A038D901C87ECE00052C05F /* Assets.xcassets */,
-				6A038D921C87ECE00052C05F /* LaunchScreen.storyboard */,
 				6A23A8821C8823F400B247DC /* AppDelegate.h */,
 				6A23A8831C8823F400B247DC /* AppDelegate.m */,
 				6A23A8841C8823F400B247DC /* LLDSHeadFile.h */,
@@ -414,6 +448,7 @@
 		6A23A8851C8823F400B247DC /* assist */ = {
 			isa = PBXGroup;
 			children = (
+				6A088D7C1C911CDD00ADE38A /* WeChat */,
 				6A23A9AA1C882A6200B247DC /* QFNetHelp.h */,
 				6A23A9AB1C882A6200B247DC /* QFNetHelp.m */,
 				6A23A8861C8823F400B247DC /* Addition */,
@@ -747,8 +782,9 @@
 				6AE3B0D31C8854FE001E96F1 /* LLDecaVideoCell.h */,
 				6AE3B0D41C8854FE001E96F1 /* LLDecaVideoCell.m */,
 				6AE3B0D51C8854FE001E96F1 /* LLDecaVideoCell.xib */,
-				6AE3B0D81C88782D001E96F1 /* LLVideoView.h */,
-				6AE3B0D91C88782D001E96F1 /* LLVideoView.m */,
+				6AE17CAF1CA0245800EF4DE2 /* LLDecaTextCell.h */,
+				6AE17CB01CA0245800EF4DE2 /* LLDecaTextCell.m */,
+				6AE17CB11CA0245800EF4DE2 /* LLDecaTextCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -760,12 +796,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6A038DAE1C87ECE00052C05F /* Build configuration list for PBXNativeTarget "Decameron" */;
 			buildPhases = (
-				BB5DA94D26E3042D134B6AF7 /* Check Pods Manifest.lock */,
+				507EA4BC7C0D1634A1363CE5 /* Check Pods Manifest.lock */,
 				6A038D7D1C87ECDF0052C05F /* Sources */,
 				6A038D7E1C87ECDF0052C05F /* Frameworks */,
 				6A038D7F1C87ECDF0052C05F /* Resources */,
-				A08E7058BE04419A9B39D24F /* Embed Pods Frameworks */,
-				6DB86E4AA5F139A1603D5F9E /* Copy Pods Resources */,
+				D21D2B9149623599DD3D7FEA /* Embed Pods Frameworks */,
+				8821A2F9D7D1E9DBEC189023 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -823,6 +859,7 @@
 				TargetAttributes = {
 					6A038D801C87ECDF0052C05F = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = W272WDFC9W;
 					};
 					6A038D991C87ECE00052C05F = {
 						CreatedOnToolsVersion = 7.2;
@@ -841,6 +878,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 6A038D781C87ECDF0052C05F;
 			productRefGroup = 6A038D821C87ECDF0052C05F /* Products */;
@@ -859,7 +897,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6A038D941C87ECE00052C05F /* LaunchScreen.storyboard in Resources */,
+				6AE17CB31CA0245800EF4DE2 /* LLDecaTextCell.xib in Resources */,
 				6A038D911C87ECE00052C05F /* Assets.xcassets in Resources */,
 				6AE3B0D71C8854FE001E96F1 /* LLDecaVideoCell.xib in Resources */,
 				6A038D8F1C87ECE00052C05F /* Main.storyboard in Resources */,
@@ -884,37 +922,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		6DB86E4AA5F139A1603D5F9E /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A08E7058BE04419A9B39D24F /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		BB5DA94D26E3042D134B6AF7 /* Check Pods Manifest.lock */ = {
+		507EA4BC7C0D1634A1363CE5 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -927,6 +935,36 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		8821A2F9D7D1E9DBEC189023 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Decameron/Pods-Decameron-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D21D2B9149623599DD3D7FEA /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Decameron/Pods-Decameron-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -965,6 +1003,7 @@
 				6A23A95C1C8823F500B247DC /* NSObject+KVOBlocks.m in Sources */,
 				6A23A97C1C8823F500B247DC /* UIImageView+Reflect.m in Sources */,
 				6A23A95F1C8823F500B247DC /* NSString+JsonValue.m in Sources */,
+				6AE17CB21CA0245800EF4DE2 /* LLDecaTextCell.m in Sources */,
 				6A23A98F1C8823F500B247DC /* UIViewController+BackButtonHandler.m in Sources */,
 				6A23A97E1C8823F500B247DC /* UINavigationController+FDFullscreenPopGesture.m in Sources */,
 				6A23A9551C8823F500B247DC /* NSDictionary+JSONString.m in Sources */,
@@ -1005,7 +1044,6 @@
 				6A23A96E1C8823F500B247DC /* UIImage+Alpha.m in Sources */,
 				6A23A98E1C8823F500B247DC /* UIView+Visuals.m in Sources */,
 				6A23A97B1C8823F500B247DC /* UIImageView+Letters.m in Sources */,
-				6AE3B0DA1C88782D001E96F1 /* LLVideoView.m in Sources */,
 				6A23A96D1C8823F500B247DC /* UIControl+ActionBlocks.m in Sources */,
 				6A23A9721C8823F500B247DC /* UIImage+Color.m in Sources */,
 				6A23A9881C8823F500B247DC /* UIView+draggable.m in Sources */,
@@ -1055,15 +1093,6 @@
 				6A038D8E1C87ECE00052C05F /* Base */,
 			);
 			name = Main.storyboard;
-			path = ..;
-			sourceTree = "<group>";
-		};
-		6A038D921C87ECE00052C05F /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6A038D931C87ECE00052C05F /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			path = ..;
 			sourceTree = "<group>";
 		};
@@ -1154,27 +1183,63 @@
 		};
 		6A038DAF1C87ECE00052C05F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6EC4AEDC09AFBCD6FD28562B /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 8AADE129E866F7499CB6F850 /* Pods-Decameron.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Decameron/assist/EaseUI/Parse",
+				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Decameron/PrefixHeader.pch";
 				INFOPLIST_FILE = Decameron/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = LL.Decameron;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Decameron/assist/WeChat",
+					"$(PROJECT_DIR)/Decameron/assist/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrnb",
+					"$(PROJECT_DIR)/Decameron/assist/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrwb",
+					"$(PROJECT_DIR)/Decameron/assist/HyphenateSDK/lib",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.baidejielu.www;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		6A038DB01C87ECE00052C05F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F32C3BF334AC080D8C6B913F /* Pods.release.xcconfig */;
+			baseConfigurationReference = 319EB312BB5DAB54BDBBA413 /* Pods-Decameron.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Zhenghao Yang (W272WDFC9W)";
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Decameron/assist/EaseUI/Parse",
+				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Decameron/PrefixHeader.pch";
 				INFOPLIST_FILE = Decameron/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = LL.Decameron;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Decameron/assist/WeChat",
+					"$(PROJECT_DIR)/Decameron/assist/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrnb",
+					"$(PROJECT_DIR)/Decameron/assist/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrwb",
+					"$(PROJECT_DIR)/Decameron/assist/HyphenateSDK/lib",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.baidejielu.www;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "36f597e5-9c07-4950-9732-d99ab1f3c593";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

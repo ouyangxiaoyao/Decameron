@@ -13,15 +13,15 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="223" height="172"/>
                 <subviews>
-                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A2P-6o-Ha3">
+                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A2P-6o-Ha3">
                         <rect key="frame" x="76" y="50" width="71" height="71"/>
                         <state key="normal" image="video-play"/>
                         <connections>
                             <action selector="changePlayState" destination="gTV-IL-0wX" eventType="touchUpInside" id="Wbu-yV-XLP"/>
                         </connections>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="屌丝男女的日常" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Jf-VY-VXj">
-                        <rect key="frame" x="104" y="12" width="119" height="20.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="－宅日常－" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Jf-VY-VXj">
+                        <rect key="frame" x="126" y="14" width="85" height="20.5"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -32,9 +32,9 @@
             </view>
             <constraints>
                 <constraint firstItem="A2P-6o-Ha3" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="4ya-S2-0dO"/>
-                <constraint firstAttribute="trailing" secondItem="5Jf-VY-VXj" secondAttribute="trailing" id="a7B-xU-hHo"/>
+                <constraint firstAttribute="trailing" secondItem="5Jf-VY-VXj" secondAttribute="trailing" constant="12" id="a7B-xU-hHo"/>
                 <constraint firstItem="A2P-6o-Ha3" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="fdl-Vg-Rmi"/>
-                <constraint firstItem="5Jf-VY-VXj" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="12" id="jtY-Dr-1QM"/>
+                <constraint firstItem="5Jf-VY-VXj" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="14" id="jtY-Dr-1QM"/>
             </constraints>
             <size key="customSize" width="223" height="172"/>
             <connections>

@@ -12,6 +12,7 @@
 @class LLDSModel;
 @class LLDecaVideoCell;
 
+typedef void(^ShareBlock)(UICollectionViewCell * cell,NSString * shareUrl);
 
 typedef void(^DidSelectCellBlock)(void);
 
@@ -29,5 +30,9 @@ typedef void(^DidSelectCellBlock)(void);
  */
 @property(nonatomic,strong)LLDSModel * data;
 
+/**
+ * 分享按钮点击调用
+ */
+@property(nonatomic,copy)ShareBlock shareBlock;
 
 @end

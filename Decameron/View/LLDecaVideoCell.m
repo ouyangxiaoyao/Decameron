@@ -39,6 +39,7 @@
     return _vkPlayer;
 }
 
+
 -(void)prepareForReuse
 {
     [super prepareForReuse];
@@ -74,7 +75,7 @@
 {
     if (![notificaton.object isEqual:self]) {
         //停止播放
-        [self.vkPlayer pauseContent];
+        [self.vkPlayer pauseContent:NO completionHandler:nil];
     }
 }
 
@@ -132,6 +133,17 @@
     [self.contentView bringSubviewToFront:self.brand];
 }
 
+#pragma mark 分享
+
+- (IBAction)shareClick:(id)sender
+{
+    WLog(@"shareClick");
+
+    __weak typeof(self) weakSelf = self;
+    if (self.shareBlock) {
+        self.shareBlock(weakSelf,self.data.weixin_url);
+    }
+}
 
 - (IBAction)changePlayState
 {

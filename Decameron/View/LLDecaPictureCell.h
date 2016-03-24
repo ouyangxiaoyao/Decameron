@@ -9,8 +9,13 @@
 #import <UIKit/UIKit.h>
 @class LLDSModel;
 
+typedef void(^ShareBlock)(UICollectionViewCell * cell,NSString * shareUrl);
 @interface LLDecaPictureCell : UICollectionViewCell
 
 @property(nonatomic,strong)LLDSModel * data;
+/**
+ * 分享按钮点击调用
+ */
+@property(nonatomic,copy)ShareBlock shareBlock;
 
 @end

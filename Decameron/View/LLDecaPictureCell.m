@@ -12,12 +12,14 @@
 #import "UIImageView+WebCache.h"
 #import "UIImage+FX.h"
 
+
 @interface LLDecaPictureCell ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *pictureView;
 @property (weak, nonatomic) IBOutlet UILabel *text;
 @property (weak, nonatomic) IBOutlet UIProgressView *progressView;
 @property (weak, nonatomic) IBOutlet UIImageView *gifImage;
+@property (weak, nonatomic) IBOutlet UIButton *shareButton;
 
 @end
 
@@ -93,6 +95,16 @@
     }];
 }
 
+#pragma mark 分享
+- (IBAction)shareClick:(id)sender
+{
+    WLog(@"shareClick");
+        
+    __weak typeof(self) weakSelf = self;
+    if (self.shareBlock) {
+        self.shareBlock(weakSelf,self.data.weixin_url);
+    }
+}
 
 
 @end

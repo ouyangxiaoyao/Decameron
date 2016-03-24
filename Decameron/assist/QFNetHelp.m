@@ -7,6 +7,7 @@
 //
 
 #import "QFNetHelp.h"
+#import "SVProgressHUD.h"
 
 static QFNetHelp *_shareManager = nil;
 
@@ -40,26 +41,22 @@ static QFNetHelp *_shareManager = nil;
 + (void)isReachToWeb {
 	[[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
 		switch (status) {
-			case AFNetworkReachabilityStatusUnknown: {
-				
-				
-				break;
-			}
-			case AFNetworkReachabilityStatusNotReachable: {
-				
-				WLog(@"无网络");
-				break;
-			}
-			case AFNetworkReachabilityStatusReachableViaWWAN: {
-				
-				
-				break;
-			}
-			case AFNetworkReachabilityStatusReachableViaWiFi: {
-				
-				
-				break;
-			}
+            case AFNetworkReachabilityStatusUnknown: // 未知网络
+                WLog(@"未知网络");
+                break;
+            case AFNetworkReachabilityStatusNotReachable: // 没有网络(断网)
+                WLog(@"没有网络(断网)");
+                [SVProgressHUD showErrorWithStatus:@"网络异常，请检查网络设置！"];
+                break;
+                
+            case AFNetworkReachabilityStatusReachableViaWWAN: // 手机自带网络
+                WLog(@"手机自带网络");
+                break;
+                
+            case AFNetworkReachabilityStatusReachableViaWiFi: // WIFI
+                WLog(@"WIFI");
+                break;
+
 		}
 		
 	}];
@@ -96,6 +93,7 @@ static QFNetHelp *_shareManager = nil;
     [manager GET:path parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
         complete(YES, responseObject);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"%@",error.localizedDescription]];
         complete(NO, error.localizedDescription);
     }];
 

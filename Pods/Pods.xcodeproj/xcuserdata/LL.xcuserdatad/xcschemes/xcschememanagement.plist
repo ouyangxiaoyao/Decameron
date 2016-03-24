@@ -44,7 +44,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods.xcscheme</key>
+		<key>Pods-Decameron.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -64,6 +64,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SVProgressHUD.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>VKFoundation.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -77,27 +82,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>171E306F2797FE1B3128005D7EB80BE4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>1950562BD3EB23B0ACF74A6AA9CD6A3C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>214306B24388C8B9E8F35FD665C1D85F</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>290577F4897F4F38DB5E788C755A315A</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>2F590D6A6CF0B40681AF37B23A07BDD2</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>4CB9EAEEABED451073A444D7FBD1B3B7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -112,7 +102,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>6B8A4E5BC5D40AB45CCB2F9930A325A0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>78239A33F829C2F1E81A0ACEDD00709E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7C9F5027D4ADA1FAE66AB68ABBD533EF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -127,12 +127,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>9B0730BB725FAE2F2083B31DAEBA4BB9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>9EAB3E42EF957541E6C3C76D35FD008E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AB9022C99A58D3BE8A04EEF6BF0D2588</key>
+		<key>A41438A4AF931A6074977ED436C95EF8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D60F0CB98400AF793A3E6C693E898A9C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -142,7 +152,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F660517A9E4A2B0498C92288077F56B6</key>
+		<key>E580AB37C2D1F9BCEE330BB96BCE6B80</key>
 		<dict>
 			<key>primary</key>
 			<true/>

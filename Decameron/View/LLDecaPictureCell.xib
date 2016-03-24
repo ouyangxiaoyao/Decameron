@@ -17,17 +17,12 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Lpi-rB-zm5">
                         <rect key="frame" x="0.0" y="0.0" width="239" height="194"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="moC-vH-xmH">
-                        <rect key="frame" x="15" y="156.5" width="42" height="20.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Lv9-OQ-e6L">
                         <rect key="frame" x="44" y="96" width="150" height="2"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="150" id="i3Q-HE-kbC"/>
                         </constraints>
+                        <color key="progressTintColor" red="0.95551818609237671" green="0.21921250224113464" blue="0.076497562229633331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </progressView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="common-gif" translatesAutoresizingMaskIntoConstraints="NO" id="OBV-MA-Uun">
                         <rect key="frame" x="0.0" y="0.0" width="31" height="31"/>
@@ -42,9 +37,7 @@
             <constraints>
                 <constraint firstItem="Lv9-OQ-e6L" firstAttribute="centerY" secondItem="fbf-r2-Zc3" secondAttribute="centerY" id="1Cj-1k-cv7"/>
                 <constraint firstItem="OBV-MA-Uun" firstAttribute="leading" secondItem="fbf-r2-Zc3" secondAttribute="leading" id="3fk-90-Eow"/>
-                <constraint firstAttribute="bottom" secondItem="moC-vH-xmH" secondAttribute="bottom" constant="17" id="Bme-SQ-2WE"/>
                 <constraint firstItem="Lpi-rB-zm5" firstAttribute="top" secondItem="fbf-r2-Zc3" secondAttribute="top" id="D0a-Iq-Jc9"/>
-                <constraint firstItem="moC-vH-xmH" firstAttribute="leading" secondItem="fbf-r2-Zc3" secondAttribute="leading" constant="15" id="E0p-H2-DTR"/>
                 <constraint firstAttribute="bottom" secondItem="Lpi-rB-zm5" secondAttribute="bottom" id="O7D-wV-Ngr"/>
                 <constraint firstItem="Lpi-rB-zm5" firstAttribute="leading" secondItem="fbf-r2-Zc3" secondAttribute="leading" id="PEc-Qv-a9m"/>
                 <constraint firstAttribute="trailing" secondItem="Lpi-rB-zm5" secondAttribute="trailing" id="cr6-t7-AlI"/>
@@ -62,7 +55,6 @@
                 <outlet property="gifImage" destination="OBV-MA-Uun" id="6C2-fZ-kmZ"/>
                 <outlet property="pictureView" destination="Lpi-rB-zm5" id="xgb-ia-eD3"/>
                 <outlet property="progressView" destination="Lv9-OQ-e6L" id="hdR-S7-dej"/>
-                <outlet property="text" destination="moC-vH-xmH" id="kO3-Gc-C2s"/>
             </connections>
             <point key="canvasLocation" x="259.5" y="234"/>
         </collectionViewCell>

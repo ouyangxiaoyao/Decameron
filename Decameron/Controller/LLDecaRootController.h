@@ -10,4 +10,6 @@
 
 @interface LLDecaRootController : UIViewController
 
+@property(nonatomic,strong)NSString * type;
+
 @end

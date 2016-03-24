@@ -99,7 +99,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 //小字大小
 #define subTitleFont [UIFont systemFontOfSize:12.0]
 //中字大小
-#define titleFont [UIFont systemFontOfSize:14.0]
+#define titleFont [UIFont systemFontOfSize:18]
 
 //检查系统版本
 #define SYSTEM_VERSION_EQUAL_TO(v)                  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
@@ -135,7 +135,7 @@ static NSString *const WJPushAppKey = @"fb7e18b932e897656d130e09";
 //微信appkey
 static NSString * const WWXAppKey = @"wxcb7317378313570d";
 //申请的环信key
-static NSString *const WEaseMobAppKey = @"hctd#hctd520";
+static NSString *const WEaseMobAppKey = @"ghbperfectcoder#baidejielu";
 
 static NSString *const WEaseMobLoginChange = @"loginStateChange";
 
